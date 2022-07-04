@@ -32,6 +32,7 @@ const List = ({places}) => {
                 </Select>
             </FormControl>
             <Grid container spacing={3} className={classes.list}>
+                
                 {places?.map((place, i) => (
                     <Grid item key={i} xs={12}>
                         <PlaceDetails place={place} />
