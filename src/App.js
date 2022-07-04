@@ -10,7 +10,7 @@ import Map from "./components/map/Map";
 const App = () => {
     const [places, setPlaces] = useState([]);
     const [coordinates, setCoordinates] = useState({});
-    const [bounds, setBounds] = useState(null);
+    const [bounds, setBounds] = useState({});
 
     // get coordinates of user
     useEffect(() => {
@@ -21,8 +21,7 @@ const App = () => {
 
     // fetch new coordinates and bounds every time map is changed
     useEffect(() => {
-        console.log(coordinates, bounds)
-        getPlacesData()
+        getPlacesData(bounds.sw, bounds.ne)
             .then((data) => {
                 console.log(data)
                 setPlaces(data);
@@ -35,7 +34,7 @@ const App = () => {
             <Header />
             <Grid container spacing={3} style={{width: '100%'}}>
                 <Grid item xs={12} md={4}>
-                    <List />
+                    <List places={places}/>
                 </Grid>
                 <Grid item xs={12} md={8}>
                     <Map 
