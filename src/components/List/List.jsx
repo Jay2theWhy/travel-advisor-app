@@ -29,7 +29,7 @@ const List = () => {
             <FormControl className={classes.formControl}>
                 <InputLabel>Type</InputLabel>
                 <Select value={type} onChange={(e) => setType(e.target.value)}>
-                    <MenuItem value="restauarants">Restaurants</MenuItem>
+                    <MenuItem value="restaurants">Restaurants</MenuItem>
                     <MenuItem value="hotels">Hotels</MenuItem>
                     <MenuItem value="attractions">Attractions</MenuItem>
                 </Select>
@@ -51,7 +51,6 @@ const List = () => {
                 ))}
             </Grid>
         </div>
-
     );
 };
 
