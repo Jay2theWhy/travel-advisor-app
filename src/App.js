@@ -9,8 +9,11 @@ import Map from "./components/map/Map";
 
 const App = () => {
     const [places, setPlaces] = useState([]);
+    const [childClicked, setChildClicked] = useState(null);
     const [coordinates, setCoordinates] = useState({});
     const [bounds, setBounds] = useState({});
+    
+    const [isLoading, setIsLoading] = useState(false);
 
     // get coordinates of user
     useEffect(() => {
@@ -21,10 +24,11 @@ const App = () => {
 
     // fetch new coordinates and bounds every time map is changed
     useEffect(() => {
+        setIsLoading(true);
         getPlacesData(bounds.sw, bounds.ne)
             .then((data) => {
-                console.log(data)
                 setPlaces(data);
+                setIsLoading(false);
             })
     }, [coordinates, bounds]);
 
@@ -36,6 +40,8 @@ const App = () => {
                 <Grid item xs={12} md={4}>
                     <List 
                         places={places} 
+                        childClicked={childClicked}
+                        isLoading={isLoading}
                     />
                 </Grid>
                 <Grid item xs={12} md={8}>
@@ -44,6 +50,7 @@ const App = () => {
                         setBounds={setBounds}
                         coordinates={coordinates}
                         places={places}
+                        setChildClicked={setChildClicked}
                     /> 
                 </Grid>
                 
